@@ -142,6 +142,8 @@ main.setBackground(new Background(backgroundImage));
             playerHand.add(deck.dealCard());
             dealerHand.add(deck.dealCard());
         }
+        playerHand.sortCards();
+        dealerHand.sortCards();
 
         canReplace = true;
         drawBtn.setDisable(false);
@@ -168,6 +170,7 @@ main.setBackground(new Background(backgroundImage));
         canReplace = false;
         drawBtn.setDisable(true);
         showdownBtn.setDisable(false);
+        playerHand.sortCards();
 
         renderHands();
         statusLabel.setText("Replacement done. Press SHOWDOWN to see the winner.");
