@@ -14,8 +14,8 @@ import java.util.*;
 public class App extends Application {
 
     private Deck deck;
-    private final List<Card> playerHand = new ArrayList<>();
-    private final List<Card> dealerHand = new ArrayList<>();
+    private final Hand playerHand = new Hand();
+    private final List<Card> dealerHand = new Hand();
     private final Set<Integer> selectedIndices = new HashSet<>();
     private boolean canReplace = false;
 
