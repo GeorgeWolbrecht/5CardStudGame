@@ -208,63 +208,9 @@ main.setBackground(new Background(backgroundImage));
         }
     }
 
-    // Supporting Classes
+    
 
-    static class Deck {
-        private final List<Card> cards = new ArrayList<>();
-        private int currentIndex = 0;
 
-        Deck() {
-            for (Suit s : Suit.values()) {
-                for (Rank r : Rank.values()) {
-                    cards.add(new Card(r, s));
-                }
-            }
-        }
-
-        void shuffle() {
-            Collections.shuffle(cards);
-            currentIndex = 0;
-        }
-
-        Card dealCard() {
-            if (currentIndex >= cards.size()) shuffle();
-            return cards.get(currentIndex++);
-        }
-    }
-
-    enum Rank { // Set up all ranks and make them final
-        TWO(2,"2"), THREE(3,"3"), FOUR(4,"4"), FIVE(5,"5"), SIX(6,"6"),
-        SEVEN(7,"7"), EIGHT(8,"8"), NINE(9,"9"), TEN(10,"10"),
-        JACK(11,"J"), QUEEN(12,"Q"), KING(13,"K"), ACE(14,"A");
-        final int value; final String symbol;
-        Rank(int v,String s){value=v;symbol=s;}
-    }
-
-    enum Suit { // Set up all suits and make them final
-        HEARTS("H"), DIAMONDS("D"), CLUBS("C"), SPADES("S");
-        final String letter;
-        Suit(String l){letter=l;}
-    }
-
-    static class Card {
-        final Rank rank;
-        final Suit suit;
-        final Image image;
-
-        Card(Rank r, Suit s) {
-            rank = r;
-            suit = s;
-            String fileName = r.symbol + s.letter + ".png"; // ex: "AH.png"
-            image = new Image(getClass().getResourceAsStream("/cards/" + fileName));
-        }
-
-        ImageView getImageView(double width, double height) {
-            ImageView iv = new ImageView(image);
-            iv.setFitWidth(width);
-            iv.setFitHeight(height);
-            return iv;
-        }
     }
 
     public static void main(String[] args) throws Exception {
