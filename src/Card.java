@@ -40,5 +40,11 @@ public class Card implements Comparable<Card>{
         return difference;
     }
 
+     ImageView getImageView(double width, double height) {
+            ImageView iv = new ImageView(image);
+            iv.setFitWidth(width);
+            iv.setFitHeight(height);
+            return iv;
+        }
     
 }
