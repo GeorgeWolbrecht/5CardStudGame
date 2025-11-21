@@ -19,19 +19,18 @@ public class Hand implements Comparable<Hand>{
     public Hand(){
         cards = new Card[handSize];
         sortedCards = sortCards(cards);
-        setFlush();
-        setStraight();
-        evaluateHand();
     }
 
-    Card[] sortCards(Card[] unsortedArray){
-        Card[] tempArray = unsortedArray;
+    void sortCards(){
+        Card[] tempArray = cards;
         Arrays.sort(tempArray);
-        Card[] returnArray = new Card[handSize];
+        sortedCards = new Card[handSize];
         for(int i = 0; i < tempArray.length; i++){
             returnArray[i] = tempArray[tempArray.length-(i+1)];
         }
-        return returnArray;
+        setFlush();
+        setStraight();
+        evaluateHand();
     }
 
     void evaluateHand(){
