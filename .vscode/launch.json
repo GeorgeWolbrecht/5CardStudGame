@@ -9,15 +9,8 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "5CardStudGame_1df9376b",
+            "projectName": "5CardStudGame",
             "vmArgs": "--module-path C:\\Users\\g4\\OneDrive\\Documents\\CSCI3331\\openjfx-22.0.2_windows-x64_bin-sdk\\javafx-sdk-22.0.2\\lib --add-modules javafx.controls,javafx.fxml --enable-preview"
-
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
         }
     ]
 }

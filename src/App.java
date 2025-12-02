@@ -15,7 +15,7 @@ public class App extends Application {
 
     private Deck deck;
     private final Hand playerHand = new Hand();
-    private final List<Card> dealerHand = new Hand();
+    private final Hand dealerHand = new Hand();
     private final Set<Integer> selectedIndices = new HashSet<>();
     private boolean canReplace = false;
 
