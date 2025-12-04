@@ -18,16 +18,28 @@ public class Hand implements Comparable<Hand>{
 
     public Hand(){
         cards = new Card[handSize];
-        sortedCards = sortCards(cards);
+
+        fourOfAKind = new Card[4]; //Logically, most cards available for a 4 of a kind
+        threeOfAKind = new Card[3]; //Logically, most cards available while making legal 3 of a kind
+        twoOfAKind = new Card[4]; //Logically, accounts for most possible combinations of 2 of a kind
+        highCard = new Card[5]; //Highest amount of cards that can be high card
+
+        isFlush = false;
+        isStraight = false;
+        isFullHouse = false;
+        isTwoPair = false;
+
+        sortCards();
+
+
+
+
     }
 
     void sortCards(){
         Card[] tempArray = cards;
         Arrays.sort(tempArray);
         sortedCards = new Card[handSize];
-        for(int i = 0; i < tempArray.length; i++){
-            returnArray[i] = tempArray[tempArray.length-(i+1)];
-        }
         setFlush();
         setStraight();
         evaluateHand();
@@ -40,7 +52,52 @@ public class Hand implements Comparable<Hand>{
             highCard = sortedCards;
         }
         else{
-            
+            Card[] tempCardArray = sortedCards;
+
+            for(int i = 0; i < handSize; i++){
+                if(i+1 < handSize){
+                    if(tempCardArray[i].getRank() == tempCardArray[i+1].getRank()){                        
+                        if(i+2 < handSize){
+                            if(tempCardArray[i].getRank() == tempCardArray[i+2].getRank()){
+                                if(i+3 < handSize){
+                                    if(tempCardArray[i].getRank() == tempCardArray[i+3].getRank()){
+                                        //Only possible way for a 4 of a kind
+                                        fourOfAKind[1] = tempCardArray[i];
+                                        fourOfAKind[2] = tempCardArray[i+1];
+                                        fourOfAKind[3] = tempCardArray[i+2];
+                                        fourOfAKind[4] = tempCardArray[i+3];
+                                        i = i+3;
+                                    }
+                                } else {
+                                    //Only Possibility for 3 of a kind
+                                    threeOfAKind[i] = tempCardArray[i];
+                                    threeOfAKind[i+1] = tempCardArray[i+1];
+                                    threeOfAKind[i+2] = tempCardArray[i+2];
+                                    i = i+2;
+                                }
+                            }
+                        } else {
+                            if(twoOfAKind[1] == null){
+                                twoOfAKind[1] = tempCardArray[i];
+                                twoOfAKind[2] = tempCardArray[i+1];
+                            } else {
+                                twoOfAKind[3] = tempCardArray[i];
+                                twoOfAKind[4] = tempCardArray[i+1]; 
+                            }
+                            i++;
+                        }
+
+                    }
+                }else {
+                    for(int j = 0; j < highCard.length; j++){
+                        if(highCard[j] == null){
+                            highCard[j] = tempCardArray[i];
+                            break;
+                        }
+                    }
+                } 
+                
+            }
         }
         
 
