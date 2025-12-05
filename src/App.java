@@ -139,8 +139,8 @@ main.setBackground(new Background(backgroundImage));
         selectedIndices.clear();
 
         for (int i = 0; i < 5; i++) {
-            playerHand.add(deck.dealCard());
-            dealerHand.add(deck.dealCard());
+            playerHand.add(deck.dealCard(), i);
+            dealerHand.add(deck.dealCard(), i);
         }
         playerHand.sortCards();
         dealerHand.sortCards();
@@ -209,11 +209,6 @@ main.setBackground(new Background(backgroundImage));
 
             playerPane.add(iv, i, 0);
         }
-    }
-
-    
-
-
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,3 +1,6 @@
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+
 public class Card implements Comparable<Card>{
     final Rank rank;
     final Suit suit;
