@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -99,6 +100,7 @@ public class App extends Application {
 
         dealBtn.setOnAction(e -> dealNewHands());
         drawBtn.setOnAction(e -> drawNewCards());
+        showdownBtn.setOnAction(e -> showdown());
         quitBtn.setOnAction(e -> primaryStage.close());
 
         // Button Hover Effects
@@ -208,6 +210,31 @@ public class App extends Application {
 
             playerPane.add(iv, i, 0);
         }
+    }
+
+    private void showdown() {
+        // Ensure both hands are evaluated
+        playerHand.sortCards();
+        dealerHand.sortCards();
+
+        playerHand.evaluateHand();
+        dealerHand.evaluateHand();
+
+
+        // Compare hands
+        int result = playerHand.compareTo(dealerHand);
+
+        String message;
+        if (result > 0) {
+            message = "Player wins the showdown!";
+        } else if (result < 0) {
+            message = "Dealer wins the showdown!";
+        } else {
+            message = "The showdown is a tie!";
+        }
+
+        statusLabel.setText(message);
+        showdownBtn.setDisable(true);
     }
 
     public static void main(String[] args) throws Exception {
