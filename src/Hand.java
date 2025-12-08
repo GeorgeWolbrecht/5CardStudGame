@@ -45,7 +45,7 @@ public class Hand implements Comparable<Hand>{
         // Card[] tempArray = cards;
         Card[] tempArray = Arrays.copyOf(cards, handSize);
         Arrays.sort(tempArray);
-        sortedCards = new Card[handSize];
+        sortedCards = tempArray;
 
         setFlush();
         setStraight();
@@ -174,25 +174,14 @@ public class Hand implements Comparable<Hand>{
 
     void setFlush() {
         if (sortedCards == null) return;
+        
         Suit chosen = cards[0].getSuit();
-        /*
-        if(cards[1].getSuit() == chosen){
-            if(cards[2].getSuit() == chosen){
-                if(cards[3].getSuit() == chosen){
-                    if(cards[4].getSuit() == chosen){
-                        isFlush = true;
-                    }
-                }
+        for (int i = 1; i < handSize; i++) {
+            if (sortedCards[i].getSuit() != chosen) {
+                isFlush = false;
+                return;
             }
         }
-        */
-       // Not sure why indents are acting werid here specifically - George 
-       for (int i = 1; i < handSize; i++) {
-           if (sortedCards[i].getSuit() != chosen) {
-               isFlush = false;
-               return;
-           }
-       }
        isFlush = true;
     }
 
