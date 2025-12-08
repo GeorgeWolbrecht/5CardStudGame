@@ -306,7 +306,6 @@ public class Hand implements Comparable<Hand>{
         if (a == null) return -1;
         if (b == null) return 1;
         return a.compareTo(b);
-        // return this.getFourOfAKind().compareTo(hand.getFourOfAKind());
     }
 
     private int compareThreeOfAKind(Hand hand) {
@@ -316,7 +315,6 @@ public class Hand implements Comparable<Hand>{
         if (a == null) return -1;
         if (b == null) return 1;
         return a.compareTo(b);
-        // return this.getThreeOfAKind().compareTo(hand.getThreeOfAKind());
     }
     private int compareTwoOfAKind(Hand hand) {
         Card a = this.getTwoOfAKind();
@@ -325,7 +323,6 @@ public class Hand implements Comparable<Hand>{
         if (a == null) return -1;
         if (b == null) return 1;
         return a.compareTo(b);
-        // return this.getTwoOfAKind().compareTo(hand.getTwoOfAKind());
     }
 
     private int compareHighCard(Hand hand) {
@@ -341,7 +338,6 @@ public class Hand implements Comparable<Hand>{
             if (cmp != 0) return cmp;
         }
         return 0;
-        // return this.getHighCard().compareTo(hand.getHighCard());
     }
 
     // 1 if this hand has a higher value, 0 if hands are tied, -1 if this hand has a lower value
@@ -358,20 +354,9 @@ public class Hand implements Comparable<Hand>{
         // Straight Flushes
         if(this.straightFlush() && o.straightFlush()) {
             return Integer.signum(this.compareHighCard(o));
-            //return compareHighCard(o);
         }
         if (this.straightFlush() && !o.straightFlush()) return wins;
         if (!this.straightFlush() && o.straightFlush()) return loses;
-
-        /*
-        //Case 2:  One hand is a straight flush, but not the other
-        if(this.straightFlush() == true && o.straightFlush() == false){
-            return wins;
-        }
-        if(this.straightFlush() == false && o.straightFlush() == true){
-            return loses;
-        }
-        */
 
         // Four of a kind
         if(this.getFourOfAKind() != null && o.getFourOfAKind() != null) {
@@ -380,33 +365,12 @@ public class Hand implements Comparable<Hand>{
         if (this.getFourOfAKind() != null && o.getFourOfAKind() == null) return wins;
         if (this.getFourOfAKind() == null && o.getFourOfAKind() != null) return loses;
 
-        /* 
-        //Case 4: One is Four of a Kind, but not the other
-        if(this.getFourOfAKind() != null && o.getFourOfAKind() == null){
-            return wins;
-        }
-        if(this.getFourOfAKind() == null && o.getFourOfAKind() != null){
-            return loses;
-        }
-        */
-
         // Full House
         if(this.fullHouse() && o.fullHouse()) {
             return Integer.signum(this.compareThreeOfAKind(o));
-            // return this.compareThreeOfAKind(o);
         }
         if (this.fullHouse() && !o.fullHouse()) return wins;
         if (!this.fullHouse() && o.fullHouse()) return loses;
-
-        /*
-        //Case 6: One if a full house but not the other
-        if(this.fullHouse() == true && o.fullHouse() == false){
-            return wins;
-        }
-        if(this.fullHouse() == false && o.fullHouse() == true){
-            return loses;
-        }
-        */
 
         // Flush
         if(this.flushCards() && o.flushCards()) {
@@ -415,32 +379,12 @@ public class Hand implements Comparable<Hand>{
         if (this.flushCards() && !o.flushCards()) return wins;
         if (!this.flushCards() && o.flushCards()) return loses;
 
-        /*
-        //Case 8: One is flush, the other is not
-        if(this.flushCards() == true && o.flushCards() == false) {
-            return wins;
-        }
-        if(this.flushCards() == false && o.flushCards() == true) {
-            return loses;
-        }
-        */
-
         // Straight
         if(this.straightCards() && o.straightCards()) {
             return Integer.signum(this.compareHighCard(o));
         }
         if (this.straightCards() && !o.straightCards()) return wins;
         if (!this.straightCards() && o.straightCards()) return loses;
-
-        /*
-        //Case 10: One is a straight but not the other
-        if(this.straightCards() == true && o.straightCards() == false) {
-            return wins;
-        }
-        if(this.straightCards() == false && o.straightCards() == true) {
-            return loses;
-        }
-        */
 
         // Three of a kind
         if(this.getThreeOfAKind() != null && o.getThreeOfAKind() != null) {
@@ -449,16 +393,6 @@ public class Hand implements Comparable<Hand>{
         if (this.getThreeOfAKind() != null && o.getThreeOfAKind() == null) return wins;
         if (this.getThreeOfAKind() == null && o.getThreeOfAKind() != null) return loses;
 
-        /*
-        //Case 12: One if 3 of a kind, but the other isn't
-        if(this.getThreeOfAKind() != null && o.getThreeOfAKind() == null) {
-            return wins;
-        }
-        if(this.getThreeOfAKind() == null && o.getThreeOfAKind() != null) {
-            return loses;
-        }
-        */
-
         // Two Pair
         if(this.twoPair() && o.twoPair()) {
             return Integer.signum(this.compareTwoOfAKind(o));
@@ -466,32 +400,12 @@ public class Hand implements Comparable<Hand>{
         if (this.twoPair() && !o.twoPair()) return wins;
         if (!this.twoPair() && o.twoPair()) return loses;
 
-        /* 
-        //Case 14: One has two pairs but the other doesn't
-        if(this.twoPair() == true && o.twoPair() == false) {
-            return wins;
-        }
-        if(this.twoPair() == false && o.twoPair() == true) {
-            return loses;
-        }
-        */
-
         // Pair
         if(this.getTwoOfAKind() != null && o.getTwoOfAKind() != null) {
             return Integer.signum(this.compareTwoOfAKind(o));
         }
         if (this.getTwoOfAKind() != null && o.getTwoOfAKind() == null) return wins;
         if (this.getTwoOfAKind() == null && o.getTwoOfAKind() != null) return loses;
-
-        /*
-        //Case 16: One has a pair and the other doesn't
-        if(this.getTwoOfAKind() != null && o.getTwoOfAKind() == null) {
-            return wins;
-        }
-        if(this.getTwoOfAKind() == null && o.getTwoOfAKind() != null) {
-            return loses;
-        }
-        */
 
         // High card
         return Integer.signum(this.compareHighCard(o));
