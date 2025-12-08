@@ -4,5 +4,4 @@ public enum Rank {
    JACK(11,"J"), QUEEN(12,"Q"), KING(13,"K"), ACE(14,"A");
     final int value; final String symbol;
     Rank(int v,String s){value=v;symbol=s;}
-
 }

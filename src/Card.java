@@ -10,44 +10,39 @@ public class Card implements Comparable<Card>{
         this.rank = rank;
         this.suit = suit;
         String fileName = rank.symbol + suit.letter + ".png"; // ex: "AH.png"
-        image = new Image(getClass().getResourceAsStream("/cards/" + fileName));
+        try {
+            image = new Image(getClass().getResourceAsStream("/cards/" + fileName));
+        } catch (Exception e) {
+            image = null;
+        }
     }
 
-    /**
-     * Method to get the Rank of a card
-     * @return Rank of card
-     */
     Rank getRank(){
         return this.rank;
     }
-
-    /**
-     * Method to get the Suit of a card
-     * @return Suit of card
-     */
 
     Suit getSuit(){
         return this.suit;
     }
 
-    /**
-     * Method to compare Two cards in value
-     * @return 1 if card is Higher rank, 0 if card is equal, -1 if card is Lower Rank
-     */
     @Override
     public int compareTo(Card o) {
+        
+        /*
         Rank rankOne = this.getRank();
         Rank rankTwo =this.getRank();
 
         int difference = rankOne.value - rankTwo.value;
         return difference;
+        */
+        if (o == null) return 1; // non-null
+        return Integer.compare(this.getRank().value, o.getRank().value);
     }
 
      ImageView getImageView(double width, double height) {
-            ImageView iv = new ImageView(image);
-            iv.setFitWidth(width);
-            iv.setFitHeight(height);
-            return iv;
-        }
-    
+        ImageView iv = new ImageView(image);
+        iv.setFitWidth(width);
+        iv.setFitHeight(height);
+        return iv;
+    }
 }
