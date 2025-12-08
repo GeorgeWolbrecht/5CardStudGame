@@ -45,4 +45,9 @@ public class Card implements Comparable<Card>{
         iv.setFitHeight(height);
         return iv;
     }
+    enum Suit {
+        HEARTS("H"),SPADES("S"),DIAMONDS("D"),CLOVES("C");
+        final String letter;
+        Suit(String l){letter=l;}
+    }
 }
