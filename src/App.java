@@ -57,7 +57,7 @@ public class App extends Application {
         );
         main.setBackground(new Background(backgroundImage));
 
-        Label title = new Label("5-Card Draw — Player vs Dealer");
+        Label title = new Label("5-Card Stud - Player vs Dealer");
         title.setFont(Font.font(20));
         HBox top = new HBox(title);
         top.setAlignment(Pos.CENTER);
