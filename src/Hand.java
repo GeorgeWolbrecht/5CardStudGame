@@ -158,10 +158,6 @@ public class Hand implements Comparable<Hand>{
         return cards[i];
     }
 
-    void set(int i, Card dealCard) {
-        cards[i] = dealCard;
-    }
-
     public void clear() {
         cards = new Card[5];
         sortedCards = null;

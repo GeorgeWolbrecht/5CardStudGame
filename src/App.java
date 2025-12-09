@@ -165,7 +165,7 @@ public class App extends Application {
         }
 
         for (int i : selectedIndices) {
-            playerHand.set(i, deck.dealCard());
+            playerHand.add(deck.dealCard(), i);
         }
         selectedIndices.clear();
         canReplace = false;
