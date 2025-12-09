@@ -220,6 +220,9 @@ public class App extends Application {
         playerHand.evaluateHand();
         dealerHand.evaluateHand();
 
+        playerRankLabel.setText("Player: " + playerHand.getHandRank());
+        dealerRankLabel.setText("Dealer: " + dealerHand.getHandRank());
+
 
         // Compare hands
         int result = playerHand.compareTo(dealerHand);

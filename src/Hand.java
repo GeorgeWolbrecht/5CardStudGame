@@ -319,4 +319,23 @@ public class Hand implements Comparable<Hand>{
         // High card
         return Integer.signum(this.compareHighCard(o));
     }
+
+    public String getHandRank() {
+        if (straightFlush()) return "Straight Flush";
+        if (getFourOfAKind() != null) return "Four of a Kind";
+        if (fullHouse()) return "Full House";
+        if (flushCards()) return "Flush";
+        if (straightCards()) return "Straight";
+        if (getThreeOfAKind() != null) return "Three of a Kind";
+        
+        // Detect number of pairs
+        int pairCount = 0;
+        for (int i = 0; i < twoOfAKind.length; i += 2) {
+            if (twoOfAKind[i] != null) pairCount++;
+        }
+        if (pairCount == 2) return "Two Pair";
+        if (pairCount == 1) return "One Pair";
+
+        return "High Card";
+    }
 }
