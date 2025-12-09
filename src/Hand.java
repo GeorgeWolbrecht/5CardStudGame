@@ -53,61 +53,6 @@ public class Hand implements Comparable<Hand>{
     }
 
     void evaluateHand() {
-        /* 
-        //Evaluate hand for scoring
-        //Check if it is a straight flush, flush, or straight
-        if(isFlush|| isStraight){
-            highCard = sortedCards;
-        }
-        else{
-            Card[] tempCardArray = sortedCards;
-
-            for(int i = 0; i < handSize; i++){
-                if(i+1 < handSize){
-                    if(tempCardArray[i].getRank() == tempCardArray[i+1].getRank()){                        
-                        if(i+2 < handSize){
-                            if(tempCardArray[i].getRank() == tempCardArray[i+2].getRank()){
-                                if(i+3 < handSize){
-                                    if(tempCardArray[i].getRank() == tempCardArray[i+3].getRank()){
-                                        //Only possible way for a 4 of a kind
-                                        fourOfAKind[1] = tempCardArray[i];
-                                        fourOfAKind[2] = tempCardArray[i+1];
-                                        fourOfAKind[3] = tempCardArray[i+2];
-                                        fourOfAKind[4] = tempCardArray[i+3];
-                                        i = i+3;
-                                    }
-                                } else {
-                                    //Only Possibility for 3 of a kind
-                                    threeOfAKind[i] = tempCardArray[i];
-                                    threeOfAKind[i+1] = tempCardArray[i+1];
-                                    threeOfAKind[i+2] = tempCardArray[i+2];
-                                    i = i+2;
-                                }
-                            }
-                        } else {
-                            if(twoOfAKind[1] == null){
-                                twoOfAKind[1] = tempCardArray[i];
-                                twoOfAKind[2] = tempCardArray[i+1];
-                            } else {
-                                twoOfAKind[3] = tempCardArray[i];
-                                twoOfAKind[4] = tempCardArray[i+1]; 
-                            }
-                            i++;
-                        }
-
-                    }
-                }else {
-                    for(int j = 0; j < highCard.length; j++){
-                        if(highCard[j] == null){
-                            highCard[j] = tempCardArray[i];
-                            break;
-                        }
-                    }
-                } 
-                
-            }
-        }
-        */
         // method assumes sortedCards is not null and has 5 cards
         if (sortedCards == null) return;
 
@@ -169,7 +114,6 @@ public class Hand implements Comparable<Hand>{
             }
             highCard = desc;
         }
-
     }
 
     void setFlush() {
@@ -204,30 +148,6 @@ public class Hand implements Comparable<Hand>{
                            sortedCards[3].getRank() == Rank.FIVE &&
                            sortedCards[4].getRank() == Rank.ACE);
         isStraight = consecutive || special;
-        /*
-        //Check ranks
-        Rank checkRank = cards[0].getRank();
-        for(int i = 1; i < handSize; i++){
-            if(checkRank.value != cards[i].getRank().value){
-                break;
-            }
-            checkRank = cards[i].getRank();
-            isStraight = true;
-        }
-
-        //Special Condition, Straight 5 high
-        if(cards[0].getRank() == Rank.ACE){
-            if(cards[1].getRank() == Rank.FIVE){
-                if(cards[2].getRank() == Rank.FOUR){
-                    if(cards[3].getRank() == Rank.THREE){
-                        if(cards[4].getRank() == Rank.TWO){
-                            isStraight = true;
-                        }
-                    }
-                }
-            }
-        }
-        */
     }
 
     int size() {
