@@ -9,6 +9,7 @@ public class Hand implements Comparable<Hand>{
     boolean isFlush;
     boolean isFullHouse;
     boolean isTwoPair;
+    boolean isOnePair;
 
     Card[] fourOfAKind;
     Card[] threeOfAKind;
@@ -101,6 +102,7 @@ public class Hand implements Comparable<Hand>{
         int pairCount = 0;
         for (int val = 2; val <= 14; val++) if (counts[val] == 2) pairCount++;
         isTwoPair = (pairCount == 2);
+        isOnePair = (pairCount == 1);
 
         // if none, set high cards
         if (!isFullHouse && !isTwoPair && !hasThree && fourOfAKind[0] == null) {
@@ -323,14 +325,8 @@ public class Hand implements Comparable<Hand>{
         if (flushCards()) return "Flush";
         if (straightCards()) return "Straight";
         if (getThreeOfAKind() != null) return "Three of a Kind";
-        
-        // Detect number of pairs
-        int pairCount = 0;
-        for (int i = 0; i < twoOfAKind.length; i += 2) {
-            if (twoOfAKind[i] != null) pairCount++;
-        }
-        if (pairCount == 2) return "Two Pair";
-        if (pairCount == 1) return "One Pair";
+        if (isTwoPair) return "TwoPair";
+        if (isOnePair) return "OnePair";
 
         return "High Card";
     }
