@@ -325,8 +325,8 @@ public class Hand implements Comparable<Hand>{
         if (flushCards()) return "Flush";
         if (straightCards()) return "Straight";
         if (getThreeOfAKind() != null) return "Three of a Kind";
-        if (isTwoPair) return "TwoPair";
-        if (isOnePair) return "OnePair";
+        if (isTwoPair) return "Two Pair";
+        if (isOnePair) return "One Pair";
 
         return "High Card";
     }
